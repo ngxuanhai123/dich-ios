@@ -3,29 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dịch Màn Hình AI</title>
+    <title>Dịch Màn Hình AI | HiHi iOS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: -apple-system, sans-serif; background: #f2f2f7; padding: 20px; text-align: center; }
-        .card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .error { color: red; font-weight: bold; }
-        textarea { width: 100%; height: 100px; margin-top: 10px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; }
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --primary: #2563eb;
+            --primary-bg: rgba(37, 99, 235, 0.08);
+            --danger: #dc2626;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+            --debug-bg: #f1f5f9;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #090d16;
+                --card-bg: #131d2e;
+                --card-border: #1e293b;
+                --text-main: #f8fafc;
+                --text-sub: #94a3b8;
+                --primary: #38bdf8;
+                --primary-bg: rgba(56, 189, 248, 0.12);
+                --danger: #ef4444;
+                --shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+                --debug-bg: #0f172a;
+            }
+        }
+
+        html[data-theme="light"] {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --primary: #2563eb;
+            --primary-bg: rgba(37, 99, 235, 0.08);
+            --danger: #dc2626;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --debug-bg: #f1f5f9;
+        }
+
+        html[data-theme="dark"] {
+            --bg-color: #090d16;
+            --card-bg: #131d2e;
+            --card-border: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --primary: #38bdf8;
+            --primary-bg: rgba(56, 189, 248, 0.12);
+            --danger: #ef4444;
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            --debug-bg: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 24px 16px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 580px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .app-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .brand-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-sub);
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .theme-btn:hover { color: var(--primary); border-color: var(--primary); }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            text-align: left;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--primary);
+            background: var(--primary-bg);
+            padding: 3px 10px;
+            border-radius: 6px;
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-sub);
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover { color: var(--primary); background: var(--primary-bg); }
+
+        #result {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            min-height: 60px;
+            word-break: break-word;
+        }
+
+        .error { color: var(--danger); font-weight: 600; }
+
+        details.debug-details {
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 12px 16px;
+            background: var(--card-bg);
+            font-size: 0.85rem;
+        }
+
+        details.debug-details summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-sub);
+            user-select: none;
+            outline: none;
+        }
+
+        textarea#debugLog {
+            width: 100%;
+            height: 120px;
+            margin-top: 10px;
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 0.78rem;
+            background: var(--debug-bg);
+            color: var(--text-sub);
+            resize: vertical;
+            outline: none;
+        }
+
+        .home-link {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            text-decoration: none;
+            text-align: center;
+            margin-top: 12px;
+            display: inline-block;
+            transition: color 0.2s;
+        }
+        .home-link:hover { color: var(--primary); }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h3>Kết quả:</h3>
-        <div id="result" style="font-size: 18px; color: #007aff;">Đang xử lý...</div>
-    </div>
+    <div class="container">
+        <div class="app-bar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                </div>
+                <div class="brand-title">Dịch Màn Hình iOS</div>
+            </div>
+            <button class="theme-btn" onclick="toggleTheme()" title="Đổi giao diện Sáng / Tối">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+        </div>
 
-    <div class="card">
-        <h3>Debug Info (Chụp cái này gửi mình nếu lỗi):</h3>
-        <textarea id="debugLog" readonly></textarea>
+        <div class="card">
+            <div class="card-header">
+                <span class="card-tag">Bản Dịch Tiếng Việt</span>
+                <button class="copy-btn" onclick="copyResult()">Sao chép</button>
+            </div>
+            <div id="result">Đang xử lý...</div>
+        </div>
+
+        <details class="debug-details">
+            <summary>Nhật ký hệ thống (Debug Info)</summary>
+            <textarea id="debugLog" readonly></textarea>
+        </details>
+
+        <a href="https://ngxuanhai123.github.io/" class="home-link">← Quay về Hệ Sinh Thái HiHi</a>
     </div>
 
     <script>
-        // --- CẤU HÌNH ---
-        // Đảm bảo link này đúng 100%
-        const WORKER_URL = "https://ai-free.ngxuanhai123.workers.dev/add-tuvung"; 
+        function toggleTheme() {
+            const cur = document.documentElement.getAttribute('data-theme') || 
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            const next = cur === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('hihi-theme', next);
+        }
+
+        (function() {
+            const saved = localStorage.getItem('hihi-theme');
+            if (saved) document.documentElement.setAttribute('data-theme', saved);
+        })();
+
+        function copyResult() {
+            const res = document.getElementById('result').innerText;
+            if (res && res !== 'Đang xử lý...') {
+                navigator.clipboard.writeText(res).then(() => {
+                    const btn = document.querySelector('.copy-btn');
+                    if (btn) { btn.innerText = 'Đã chép!'; setTimeout(() => btn.innerText = 'Sao chép', 1500); }
+                });
+            }
+        }
+
+    <script>
+        // --- CẤU HÌNH AI NO FREE ---
+        const WORKER_URL = "https://ai-no-free.ngxuanhai123.workers.dev/v1/chat/completions"; 
+        const AI_MODEL = "anhyeu00m/claude-fable-5";
+        const AI_KEY = "Ai@123";
 
         function log(msg) {
             const logBox = document.getElementById('debugLog');
@@ -47,32 +311,41 @@
             }
 
             try {
-                resultDiv.innerText = "Đang gửi lên Server...";
+                resultDiv.innerText = "Đang gửi lên Server AI...";
                 
-                // 2. Gọi Worker
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 20000);
+
+                // 2. Gọi Worker ai-no-free
                 const response = await fetch(WORKER_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ rawText: rawInput })
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${AI_KEY}`
+                    },
+                    body: JSON.stringify({
+                        model: AI_MODEL,
+                        messages: [
+                            { role: "system", content: "Bạn là chuyên gia dịch thuật màn hình. Hãy dịch văn bản sau sang tiếng Việt ngắn gọn, súc tích và tự nhiên. Chỉ trả về bản dịch tiếng Việt." },
+                            { role: "user", content: rawInput }
+                        ],
+                        temperature: 0.3
+                    }),
+                    signal: controller.signal
                 });
+                clearTimeout(timeoutId);
 
                 log("2. Server Status: " + response.status);
 
                 const text = await response.text();
                 log("3. Server trả về: " + text);
 
-                // Thử parse JSON
+                // Parse kết quả trả về
                 try {
                     const data = JSON.parse(text);
-                    if (data.vietnamese) {
-                        resultDiv.innerText = data.vietnamese;
-                    } else if (data.error) {
-                        resultDiv.innerHTML = `<span class='error'>Lỗi Server: ${data.error}</span>`;
-                    } else {
-                        resultDiv.innerText = text; // Hiện nguyên văn nếu không phải JSON
-                    }
+                    const vietnameseText = data.choices?.[0]?.message?.content || data.vietnamese || data.result || text;
+                    resultDiv.innerText = vietnameseText.trim();
                 } catch (e) {
-                    // Nếu server trả về text thường (không phải JSON)
                     resultDiv.innerText = text;
                 }
 
