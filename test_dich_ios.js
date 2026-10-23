@@ -35,10 +35,10 @@ async function runTests() {
   // TEST 2: Cấu hình AI Gateway mới
   try {
     const usesAiNoFree = html.includes('ai-no-free.ngxuanhai123.workers.dev');
-    const usesCorrectModel = html.includes('anhyeu00m/claude-fable-5') || html.includes('claude-fable-5');
+    const usesCorrectModel = html.includes('tranhieu13102003/gpt-6-luna') || html.includes('gpt-6-luna');
     const usesAuthKey = html.includes('Ai@123');
     const passed = usesAiNoFree && usesCorrectModel && usesAuthKey;
-    recordResult('2. Cấu hình AI Gateway mới (ai-no-free, claude-fable-5, Ai@123)', passed, `ai-no-free: ${usesAiNoFree}, model: ${usesCorrectModel}, authKey: ${usesAuthKey}`);
+    recordResult('2. Cấu hình AI Gateway mới (ai-no-free, gpt-6-luna, Ai@123)', passed, `ai-no-free: ${usesAiNoFree}, model: ${usesCorrectModel}, authKey: ${usesAuthKey}`);
   } catch (e) {
     recordResult('2. Cấu hình AI Gateway mới', false, e.message);
   }
@@ -61,7 +61,7 @@ async function runTests() {
         'Authorization': 'Bearer Ai@123'
       },
       body: JSON.stringify({
-        model: 'anhyeu00m/claude-fable-5',
+        model: 'tranhieu13102003/gpt-6-luna',
         messages: [
           { role: 'system', content: 'Bạn là chuyên gia dịch thuật màn hình. Hãy dịch văn bản sau sang tiếng Việt ngắn gọn, súc tích và tự nhiên. Chỉ trả về bản dịch tiếng Việt.' },
           { role: 'user', content: 'Swipe up to open app switcher.' }
