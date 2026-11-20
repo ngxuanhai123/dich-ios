@@ -933,40 +933,7 @@ body {
 <body> 
 <div class="phiquiz-app-top-bar" style="background-color:#6366f1;"></div> 
 
-<!-- ==========================================================================
-     PHIQUIZ SPLASH SCREEN
-     ========================================================================== -->
-<div id="phiquizSplashScreen" class="phiquiz-splash" data-swarm-ignore>
-  <div class="phiquiz-splash-card">
-    <div class="pressable" style="width:60px;height:60px;background:var(--color-orange);border:2.5px solid var(--color-ink);border-radius:20px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-hard);animation:wiggle 2.8s infinite ease-in-out;">
-      <span class="msr msr-filled" style="font-size:34px;color:#1e1e1e;">phone_iphone</span>
-    </div>
-    <div class="phiquiz-splash-title">HiHi Translation iOS</div>
-    <div class="phiquiz-splash-sub">Ứng dụng luyện dịch tối ưu cho iPhone/iPad</div>
-    <div class="phiquiz-splash-progress">
-      <div class="phiquiz-splash-fill"></div>
-    </div>
-  </div>
-</div>
-<script>
-(function() {
-  function hideSplash() {
-    var sp = document.getElementById('phiquizSplashScreen');
-    if (sp) {
-      sp.style.opacity = '0';
-      sp.style.pointerEvents = 'none';
-      setTimeout(function() { sp.remove(); }, 350);
-    }
-  }
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(hideSplash, 250);
-  } else {
-    window.addEventListener('DOMContentLoaded', function() { setTimeout(hideSplash, 250); });
-    window.addEventListener('load', function() { setTimeout(hideSplash, 150); });
-  }
-  setTimeout(hideSplash, 7000);
-})();
-</script>
+
 
 <!-- ==========================================================================
      DESKTOP SIDEBAR (≥1024px)
