@@ -10,10 +10,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📱 HiHi Translation Touch - Luyện Dịch Cảm Ứng</title>
     <style>
-        body { font-family: -apple-system, sans-serif; background: #f2f2f7; padding: 20px; text-align: center; }
-        .card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .error { color: red; font-weight: bold; }
-        textarea { width: 100%; height: 100px; margin-top: 10px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; }
+        body { text-align: center; }
+        .touch-card {
+            background: var(--color-surface, #ffffff);
+            color: var(--color-ink, #1e1e1e);
+            border: 2.5px solid var(--color-ink, #1e1e1e);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-hard, 4px 4px 0 0 #1e1e1e);
+        }
+        .touch-card h3 { margin: 0 0 12px; color: var(--color-ink, #1e1e1e); font-weight: 800; }
+        .error { color: #dc2626; font-weight: 800; }
+        textarea {
+            width: 100%; height: 120px; margin-top: 8px;
+            background: var(--color-surface2, #efeee8);
+            color: var(--color-ink, #1e1e1e);
+            border: 2px solid var(--color-ink, #1e1e1e);
+            border-radius: 14px; padding: 12px;
+            font-family: inherit; font-weight: 600;
+            box-sizing: border-box;
+        }
     </style>
 
 <style id="hihi-global-nav-style">
@@ -943,29 +960,18 @@ body {
     <a href="https://ngxuanhai123.github.io/" class="phiquiz-sidebar-btn" title="Trang chủ HiHi Study">
       <span class="msr">home</span>
     </a>
-    <a href="https://ngxuanhai123.github.io/tuvung/" class="phiquiz-sidebar-btn " title="Luyện Từ Vựng">
-      <span class="msr ">menu_book</span>
+    <a href="https://ngxuanhai123.github.io/tuvung/" class="phiquiz-sidebar-btn" title="Luyện Từ Vựng">
+      <span class="msr">menu_book</span>
     </a>
-    <a href="https://ngxuanhai123.github.io/chinhta/" class="phiquiz-sidebar-btn " title="Luyện Chính Tả">
-      <span class="msr ">edit_note</span>
+    <a href="https://ngxuanhai123.github.io/chinhta/" class="phiquiz-sidebar-btn" title="Luyện Chính Tả">
+      <span class="msr">edit_note</span>
     </a>
-    <a href="https://ngxuanhai123.github.io/dich/" class="phiquiz-sidebar-btn active" title="Luyện Dịch">
-      <span class="msr msr-filled">translate</span>
+    <a href="https://ngxuanhai123.github.io/dich/" class="phiquiz-sidebar-btn" title="Luyện Dịch">
+      <span class="msr">translate</span>
     </a>
-    <a href="https://ngxuanhai123.github.io/note/" class="phiquiz-sidebar-btn " title="Kho Lưu Ghi Chú">
-      <span class="msr ">bookmark</span>
+    <a href="https://ngxuanhai123.github.io/note/" class="phiquiz-sidebar-btn" title="Kho Lưu Ghi Chú">
+      <span class="msr">bookmark</span>
     </a>
-    <button type="button" class="phiquiz-sidebar-btn" onclick="window.hihiOpenLeaderboard()" title="Bảng Xếp Hạng">
-      <span class="msr">emoji_events</span>
-    </button>
-  </div>
-  <div class="phiquiz-sidebar-footer">
-    <button type="button" class="phiquiz-sidebar-btn" onclick="toggleHiHiSysTheme()" title="Đổi Chế Độ Sáng / Tối">
-      <span class="msr" id="hihiSidebarThemeIcon">dark_mode</span>
-    </button>
-    <button type="button" class="phiquiz-sidebar-btn login-btn" onclick="hihiAuthLogin()" title="Đăng Nhập">
-      <span class="msr msr-filled">account_circle</span>
-    </button>
   </div>
 </aside>
 
@@ -977,16 +983,16 @@ body {
     <span class="msr">home</span>
     <span>Trang chủ</span>
   </a>
-  <a href="https://ngxuanhai123.github.io/tuvung/" class="phiquiz-bottom-nav-item ">
-    <span class="msr ">menu_book</span>
+  <a href="https://ngxuanhai123.github.io/tuvung/" class="phiquiz-bottom-nav-item">
+    <span class="msr">menu_book</span>
     <span>Từ vựng</span>
   </a>
-  <a href="https://ngxuanhai123.github.io/chinhta/" class="phiquiz-bottom-nav-item ">
-    <span class="msr ">edit_note</span>
+  <a href="https://ngxuanhai123.github.io/chinhta/" class="phiquiz-bottom-nav-item">
+    <span class="msr">edit_note</span>
     <span>Chính tả</span>
   </a>
-  <a href="https://ngxuanhai123.github.io/dich/" class="phiquiz-bottom-nav-item active">
-    <span class="msr msr-filled">translate</span>
+  <a href="https://ngxuanhai123.github.io/dich/" class="phiquiz-bottom-nav-item">
+    <span class="msr">translate</span>
     <span>Dịch</span>
   </a>
   <button type="button" class="phiquiz-bottom-nav-item" onclick="toggleHiHiSysMenu(event)">
@@ -1114,6 +1120,20 @@ body {
             <div class="hihi-grid-desc">Dịch câu & ngữ cảnh</div>
           </div>
       </a>
+      <a href="https://ngxuanhai123.github.io/dich-ios/" class="hihi-grid-card current">
+          <div class="hihi-grid-icon hihi-icon-dich"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <div class="hihi-grid-info">
+            <div class="hihi-grid-name">Dịch Touch</div>
+            <div class="hihi-grid-desc">Dịch nhanh tối ưu Mobile</div>
+          </div>
+      </a>
+      <a href="https://ngxuanhai123.github.io/indo/" class="hihi-grid-card">
+          <div class="hihi-grid-icon hihi-icon-tuvung"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div class="hihi-grid-info">
+            <div class="hihi-grid-name">Tiếng Indo</div>
+            <div class="hihi-grid-desc">Học giao tiếp Bahasa</div>
+          </div>
+      </a>
       <a href="https://ngxuanhai123.github.io/note/" class="hihi-grid-card">
           <div class="hihi-grid-icon hihi-icon-note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
           <div class="hihi-grid-info">
@@ -1147,15 +1167,46 @@ body {
 </div>
 
 
-    <div class="card">
-        <h3>Kết quả:</h3>
-        <div id="result" style="font-size: 18px; color: #007aff;">Đang xử lý...</div>
+    <div class="phiquiz-main-container" style="max-width:760px;">
+      <div class="touch-card">
+          <h3>Kết quả:</h3>
+          <div id="result" style="font-size: 18px; font-weight: 700; color: var(--color-cyan-deep, #0e9f9b);">Đang xử lý...</div>
+      </div>
+
+      <div class="touch-card">
+          <h3>Debug Info (Chụp cái này gửi mình nếu lỗi):</h3>
+          <textarea id="debugLog" readonly></textarea>
+      </div>
     </div>
 
-    <div class="card">
-        <h3>Debug Info (Chụp cái này gửi mình nếu lỗi):</h3>
-        <textarea id="debugLog" readonly></textarea>
+<!-- HIHI SHARED USER DROPDOWN -->
+<div id="hihiUserDropdown" class="hihi-user-dropdown" onclick="event.stopPropagation()">
+  <div class="hihi-dropdown-header">
+    <img id="hihiDropAvatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394a3b8'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/%3E%3C/svg%3E" class="hihi-user-avatar" alt="Avatar">
+    <div style="min-width:0;">
+      <div id="hihiDropName" style="font-weight:800;font-size:0.88rem;color:var(--color-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Khách</div>
+      <div id="hihiDropEmail" style="font-size:0.72rem;color:var(--color-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Chưa đăng nhập</div>
     </div>
+  </div>
+  <div class="hihi-dropdown-scores">
+    <div class="hihi-score-item">
+      <div id="hihiScoreTotal" class="score-val">0</div>
+      <div class="score-lbl">🏆 Tổng điểm</div>
+    </div>
+    <div class="hihi-score-item">
+      <div id="hihiScoreVocab" class="score-val">0</div>
+      <div class="score-lbl">📚 Từ Vựng</div>
+    </div>
+    <div class="hihi-score-item">
+      <div id="hihiScoreSpell" class="score-val">0</div>
+      <div class="score-lbl">✍️ Chính Tả</div>
+    </div>
+  </div>
+  <div class="hihi-dropdown-actions">
+    <button type="button" class="hihi-dropdown-btn" onclick="hihiOpenLeaderboard()"><span>🏆</span> Bảng Xếp Hạng Chung</button>
+    <button type="button" class="hihi-dropdown-btn logout-btn" onclick="hihiAuthLogout()"><span>🚪</span> Đăng xuất</button>
+  </div>
+</div>
 
     <script>
         // --- CẤU HÌNH ---
@@ -1272,12 +1323,104 @@ document.addEventListener('keydown', function(e) {
 });
 
 (function() {
-  var saved = localStorage.getItem('hihi-theme');
-  if (!saved) {
-    saved = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  }
+  var saved = localStorage.getItem('hihi-theme') || 'light';
+  localStorage.setItem('hihi-theme', saved);
   applyHiHiTheme(saved);
 })();
+</script>
+<script type="module">
+import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const hihiFirebaseConfig = {
+  apiKey: "AIzaSyDtaVYb_72YvoGzvcERJZypUGS-u3skz2M",
+  authDomain: "tuvung-88e8d.firebaseapp.com",
+  databaseURL: "https://tuvung-88e8d-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "tuvung-88e8d",
+  storageBucket: "tuvung-88e8d.firebasestorage.app",
+  messagingSenderId: "722559465686",
+  appId: "1:722559465686:web:bae1a77791205d372db177",
+  measurementId: "G-T785TQ3V32"
+};
+const HIHI_ADMIN_EMAIL = "haingxua@gmail.com";
+const hihiApp = getApps().length === 0 ? initializeApp(hihiFirebaseConfig) : getApp();
+const auth = getAuth(hihiApp);
+const db = getFirestore(hihiApp);
+const provider = new GoogleAuthProvider();
+provider.setCustomParameters({ prompt: 'select_account' });
+
+window.hihiAuth = {
+  app: hihiApp, auth, db, provider,
+  async login() {
+    try { await signInWithPopup(auth, provider); }
+    catch(err) {
+      if (err.code === "auth/popup-blocked" || err.code === "auth/popup-closed-by-user" || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)) {
+        try { await signInWithRedirect(auth, provider); } catch(re) { alert("Không thể đăng nhập Google: " + re.message); }
+      } else { alert("Đăng nhập Google thất bại: " + err.message); }
+    }
+  },
+  async logout() {
+    try { await signOut(auth); window.location.reload(); } catch(e) { console.error("Logout failed:", e); }
+  }
+};
+window.hihiAuthLogin = () => window.hihiAuth.login();
+window.hihiAuthLogout = () => window.hihiAuth.logout();
+window.toggleHiHiUserMenu = function(e) {
+  if (e) e.stopPropagation();
+  const d = document.getElementById("hihiUserDropdown");
+  if (d) d.classList.toggle("active");
+};
+document.addEventListener("click", function() {
+  const d = document.getElementById("hihiUserDropdown");
+  if (d) d.classList.remove("active");
+});
+getRedirectResult(auth).catch(() => {});
+
+onAuthStateChanged(auth, async (user) => {
+  const authBtn = document.getElementById("hihiSysAuthBtn");
+  const userPill = document.getElementById("hihiUserPill");
+  const avatar = document.getElementById("hihiUserAvatar");
+  const name = document.getElementById("hihiUserName");
+  const dropAvatar = document.getElementById("hihiDropAvatar");
+  const dropName = document.getElementById("hihiDropName");
+  const dropEmail = document.getElementById("hihiDropEmail");
+  const adminBadge = document.getElementById("hihiAdminBadge");
+
+  if (user) {
+    const isAdmin = (user.email === HIHI_ADMIN_EMAIL);
+    window.hihiCurrentUser = user;
+    if (authBtn) authBtn.style.display = "none";
+    if (userPill) userPill.style.display = "inline-flex";
+    if (avatar && user.photoURL) avatar.src = user.photoURL;
+    if (name) name.textContent = user.displayName || user.email.split("@")[0];
+    if (dropAvatar && user.photoURL) dropAvatar.src = user.photoURL;
+    if (dropName) dropName.textContent = user.displayName || "Học viên";
+    if (dropEmail) dropEmail.textContent = user.email || "";
+    if (adminBadge) adminBadge.style.display = isAdmin ? "inline-block" : "none";
+    try {
+      const snap = await getDoc(doc(db, "hihi_leaderboard", user.uid));
+      if (snap.exists()) {
+        const d = snap.data();
+        window.hihiCurrentUserData = d;
+        const tot = document.getElementById("hihiScoreTotal");
+        const voc = document.getElementById("hihiScoreVocab");
+        const spl = document.getElementById("hihiScoreSpell");
+        if (tot) tot.textContent = d.total_score || 0;
+        if (voc) voc.textContent = d.tuvung_score || 0;
+        if (spl) spl.textContent = d.chinhta_score || 0;
+      }
+    } catch (e) {}
+  } else {
+    window.hihiCurrentUser = null;
+    window.hihiCurrentUserData = null;
+    if (authBtn) authBtn.style.display = "inline-flex";
+    if (userPill) userPill.style.display = "none";
+    if (adminBadge) adminBadge.style.display = "none";
+    if (dropName) dropName.textContent = "Khách";
+    if (dropEmail) dropEmail.textContent = "Chưa đăng nhập";
+  }
+});
 </script>
 </body>
 </html>
