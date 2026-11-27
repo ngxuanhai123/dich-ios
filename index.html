@@ -1239,7 +1239,10 @@ body {
                     if (data.vietnamese) {
                         resultDiv.innerText = data.vietnamese;
                     } else if (data.error) {
-                        resultDiv.innerHTML = `<span class='error'>Lỗi Server: ${data.error}</span>`;
+                        const errSpan = document.createElement('span');
+                        errSpan.className = 'error';
+                        errSpan.textContent = `Lỗi Server: ${data.error}`;
+                        resultDiv.replaceChildren(errSpan);
                     } else {
                         resultDiv.innerText = text; // Hiện nguyên văn nếu không phải JSON
                     }
